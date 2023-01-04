@@ -1,0 +1,3 @@
+# Run Print Wizard as Admin if unable to connect via Windows Add Printer
+Start-Process PowerShell -Verb runAs
+rundll32 printui.dll,PrintUIEntry /il
