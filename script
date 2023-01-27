@@ -1,3 +1,5 @@
 # Run Print Wizard as Admin if unable to connect via Windows Add Printer
-Start-Process PowerShell -Verb runAs
-rundll32 printui.dll,PrintUIEntry /il
+$printers = Get-WmiObject -Class Win32_Printer -ComputerName "." | Where-Object {$_.Network -eq $true}
+foreach ($printer in $printers) {
+    Start-Process PowerShell -Verb runAs -ArgumentList "rundll32 printui.dll,PrintUIEntry /in /n\\$($printer.Name)"
+}
