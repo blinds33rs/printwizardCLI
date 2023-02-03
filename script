@@ -3,3 +3,4 @@ $printers = Get-WmiObject -Class Win32_Printer -ComputerName "." | Where-Object 
 foreach ($printer in $printers) {
     Start-Process PowerShell -Verb runAs -ArgumentList "rundll32 printui.dll,PrintUIEntry /in /n\\$($printer.Name)"
 }
+#sick code brah!
